@@ -6,6 +6,9 @@ on:
       - 'v*'  # v1.0.0, v1.1.0 などのタグでトリガー
   workflow_dispatch:  # 手動実行も可能
 
+permissions:
+  contents: write  # リリース作成に必要な権限
+
 jobs:
   build:
     runs-on: ubuntu-latest
