@@ -25,12 +25,18 @@ jobs:
 
       - name: Lint
         run: npm run lint
+        env:
+          PROJECT_NAME: Numeric_Blocks
 
       - name: Build project
         run: npm run build
+        env:
+          PROJECT_NAME: Numeric_Blocks
 
       - name: Create mcaddon package
         run: npm run mcaddon
+        env:
+          PROJECT_NAME: Numeric_Blocks
 
       - name: Upload mcaddon artifact
         uses: actions/upload-artifact@v4
