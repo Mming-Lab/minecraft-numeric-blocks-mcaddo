@@ -1,0 +1,21 @@
+{
+  "format_version": 2,
+  "metadata": {
+    "authors": ["mming -ミング-"]
+  },
+  "header": {
+    "name": "pack.name",
+    "description": "pack.description",
+    "uuid": "abc42e88-332b-4830-bfa4-098f343a5e02",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    {
+      "description": "Numeric Blocks Resource Pack",
+      "type": "resources",
+      "uuid": "779165ae-4fca-4533-bf5a-3bb9366ed49b",
+      "version": [1, 0, 0]
+    }
+  ]
+}
