@@ -117,5 +117,4 @@ system.afterEvents.scriptEventReceive.subscribe((ev: ScriptEventCommandMessageAf
     const 置換座標: Vector3 = Vector3Utils.add(開始座標, Vector3Utils.scale(方向ベクトル, i));
     次元.setBlockType(置換座標, ランダム数字ブロック配列[i] as MinecraftBlockTypes);
   }
-
 });
