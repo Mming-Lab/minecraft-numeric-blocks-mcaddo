@@ -44,6 +44,7 @@ jobs:
           name: Numeric_Blocks.mcaddon
           path: dist/packages/Numeric_Blocks.mcaddon
           retention-days: 90
+          compression-level: 0  # .mcaddonは既にZIP形式なので再圧縮を無効化
 
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/')
