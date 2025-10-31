@@ -21,7 +21,6 @@ Minecraftで数字ブロック（色付き羊毛）を一列に配置するア�
 1. [Releases](../../releases)から最新の`Numeric_Blocks.mcaddon`をダウンロード
 2. ダウンロードしたファイルをダブルクリックしてMinecraftにインポート
 3. ワールド設定で以下を有効化:
-   - 実験的機能: ベータAPI
    - ビヘイビアパック: Numeric Blocks
    - リソースパック: Numeric Blocks
 
