@@ -14,48 +14,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # リポジトリをチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
+      # リソースパックディレクトリをZIP化して.mcpackファイルを作成
+      # .mcpackファイルは実際にはZIPファイルで、拡張子が異なるだけ
+      - name: Create mcpack package
+        run: |
+          cd resource_packs/Numeric_Blocks
+          zip -r ../../Numeric_Blocks.mcpack ./*
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Lint
-        run: npm run lint
-        env:
-          PROJECT_NAME: Numeric_Blocks
-
-      - name: Build project
-        run: npm run build
-        env:
-          PROJECT_NAME: Numeric_Blocks
-
-      - name: Create mcaddon package
-        run: npm run mcaddon
-        env:
-          PROJECT_NAME: Numeric_Blocks
-
-      - name: Upload mcaddon artifact
+      # ビルド成果物をGitHub Actionsにアップロード
+      # アーティファクトは自動的に.zipで圧縮されるが、元のファイル名は保持される
+      - name: Upload mcpack artifact
         uses: actions/upload-artifact@v4
         with:
           name: Numeric_Blocks  # アーティファクト名(.zipが自動追加されるため拡張子なし)
-          path: dist/packages/Numeric_Blocks.mcaddon
+          path: Numeric_Blocks.mcpack
           retention-days: 90
 
+      # タグがプッシュされた場合のみ、GitHubリリースを作成
+      # Releasesページに.mcpackファイルが添付される
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/packages/Numeric_Blocks.mcaddon
+          files: Numeric_Blocks.mcpack
           draft: false
           prerelease: false
-          generate_release_notes: true
-          make_latest: true
+          generate_release_notes: true  # コミット履歴から自動的にリリースノートを生成
+          make_latest: true  # 最新リリースとしてマーク
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
